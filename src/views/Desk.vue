@@ -47,8 +47,12 @@
 </template>
 
 <script>
+// vue-draggable-resizable - has all the necessary functionality out of the box,
+// is quite popular, is covered with tests and is distributed under the MIT license
 import VueDraggableResizable from 'vue-draggable-resizable';
 import { TILE } from '@/helper/defaults';
+
+// Function of checking access to storage, sometimes storage may be unavailable
 import storageAvailable from '@/helper/storageAvailable';
 
 export default {
@@ -70,6 +74,9 @@ export default {
       return this.tiles.filter((tile) => !tile.isActive);
     },
 
+    // Used as an easy way to transfer an element to the top layer
+    // without breaking the position of the previous layers.
+    // Increase the maximum index by +1
     maxZIndex() {
       const zIndexes = this.tiles.map((tile) => tile.zIndex) || [0];
       return Math.max(...zIndexes);
@@ -82,10 +89,12 @@ export default {
 
   methods: {
     init() {
+      // Сhecking localStorage on initialization
       this.isLocalStorageAvailable = storageAvailable('localStorage');
       this.tiles = this.getInitTilesData();
     },
 
+    // Checking for data availability
     getInitTilesData() {
       let tiles = JSON.parse(localStorage.getItem('tiles'));
       if (!tiles || !Array.isArray(tiles.data) || tiles.data.length < 5) {
@@ -94,6 +103,7 @@ export default {
       return tiles.data;
     },
 
+    // Filling with default data
     getDefaultTilesData() {
       const data = [];
       for (let i = 0; i < TILE.COUNT; i++) {
@@ -129,6 +139,7 @@ export default {
       this.saveTilesToLocalStorage();
     },
 
+    // Restoring an element, setting the necessary parameters
     restoreTile(tile) {
       const x = (this.$refs.tiles.clientWidth - TILE.WIDTH) / 2;
       const y = (this.$refs.tiles.clientHeight - TILE.HEIGHT) / 2;

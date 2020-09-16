@@ -82,6 +82,7 @@ export default {
       };
     },
 
+    // Processing only necessary messages
     onNewMsg(msg) {
       const msgBody = JSON.parse(msg.data);
       if (
@@ -91,6 +92,7 @@ export default {
       }
     },
 
+    // Save the new transaction
     onUnconfirmedTransaction(data) {
       return this.transactions.push({
         hash: data.x.hash,
