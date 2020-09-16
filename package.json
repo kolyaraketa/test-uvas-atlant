@@ -13,6 +13,7 @@
     "core-js": "^3.6.5",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",
+    "vue-draggable-resizable": "^2.2.0",
     "vue-router": "^3.2.0",
     "vuex": "^3.4.0"
   },
@@ -35,5 +36,18 @@
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
+  },
+  "prettier": {
+    "disableLanguages": [],
+    "useTabs": false,
+    "htmlWhitespaceSensitivity": "ignore",
+    "parser": "flow",
+    "jsxSingleQuote": true,
+    "eslintIntegration": true,
+    "stylelintIntegration": true,
+    "singleQuote": true,
+    "semi": true,
+    "printWidth": 85,
+    "trailingComma": "none"
   }
 }
